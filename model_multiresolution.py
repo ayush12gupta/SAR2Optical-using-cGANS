@@ -433,7 +433,7 @@ class pix2pix(object):
         self.saver.save(self.sess,
                         os.path.join(checkpoint_dir, model_name),
                         global_step=step)
-        print "Saving checkpoint!"
+        print("Saving checkpoint!")
 #        self.saver.save(self.sess, checkpoint_dir +'/my-model')
 #        self.saver.export_meta_graph(filename=checkpoint_dir +'/my-model.meta')
 
@@ -503,13 +503,13 @@ class pix2pix(object):
                 self.fake_B_sample,
                 feed_dict={self.real_data: sample_image}
             )
-            print samples.shape
+            print(samples.shape)
             output_folder = '/home/jose/Templates/'
             np.save(output_folder+str(i), samples.reshape(256, 256, 7))
 #            save_images(samples, [self.batch_size, 1],
 #                        './{}/test_{:04d}.png'.format(args.test_dir, idx))
     def generate_image(self, args):
-        print args
+        print(args)
         output_folder = '/home/jose/Templates/Pix2Pix/pix2pix-tensorflow_jose/'
         init_op = tf.global_variables_initializer()
         self.sess.run(init_op)
@@ -518,42 +518,42 @@ class pix2pix(object):
             print(" [*] Load SUCCESS")
         else:
             print(" [!] Load failed...")
-        print args.experiment_type
+        print(args.experiment_type)
         if args.experiment_type is 'case_01':
             # Load images
-            print 'Case 01 ...'
+            print('Case 01 ...')
             if '11nov2015' in args.dataset_name:
-                print 'generating image for_' + args.dataset_name
+                print('generating image for_' + args.dataset_name)
                 sar_img_name = '02_10Nov_2015.npy'
                 opt_img_name = '20151111'
-                print sar_img_name, opt_img_name
+                print(sar_img_name, opt_img_name)
             elif '13dec2015' in args.dataset_name:
-                print 'generating image for_' + args.dataset_name
+                print('generating image for_' + args.dataset_name)
                 sar_img_name = '05_16Dec_2015.npy'
                 opt_img_name = '20151213'
-                print sar_img_name, opt_img_name
+                print(sar_img_name, opt_img_name)
             elif '18mar2016' in args.dataset_name:
-                print 'generating image for_' + args.dataset_name
+                print('generating image for_' + args.dataset_name)
                 sar_img_name = '09_21Mar_2016.npy'
                 opt_img_name = '20160318'
-                print sar_img_name, opt_img_name
+                print(sar_img_name, opt_img_name)
             elif '05may2016' in args.dataset_name:
-                print 'generating image for_' + args.dataset_name
+                print('generating image for_' + args.dataset_name)
                 sar_img_name = '10_08May_2016.npy'
                 opt_img_name = '20160505'
-                print sar_img_name, opt_img_name
+                print(sar_img_name, opt_img_name)
             elif '08jul2016' in args.dataset_name:
-                print 'generating image for_' + args.dataset_name
+                print('generating image for_' + args.dataset_name)
                 sar_img_name = '13_07Jul_2016.npy'
                 opt_img_name = '20160708'
-                print sar_img_name, opt_img_name
+                print(sar_img_name, opt_img_name)
             elif '24jul2016' in args.dataset_name:
-                print 'generating image for_' + args.dataset_name
+                print('generating image for_' + args.dataset_name)
                 sar_img_name = '14_31Jul_2016.npy'
                 opt_img_name = '20160724'
-                print sar_img_name, opt_img_name
+                print(sar_img_name, opt_img_name)
             else:
-                print "Image pair doesnt exist !!!"
+                print("Image pair doesnt exist !!!")
                 return 0
 #   20151111 -- 02_10Nov_2015 ok !
 #   20151127 -- 03_22Nov_2015 too much clouds !
@@ -604,7 +604,7 @@ class pix2pix(object):
             np.save(output_folder + self.dataset_name + '_cloud_mask', cloud_mask)
         elif args.experiment_type is 'case_015':
             # Load images
-            print 'Case 01.5 ...'
+            print('Case 01.5 ...')
             sar_img_name = '13_07Jul_2016.npy'
             opt_img_name = '20160708'
 #            10_08May_2016.npy
@@ -638,7 +638,7 @@ class pix2pix(object):
             np.save(output_folder + self.dataset_name + '_' + opt_img_name + '_cloud_mask', cloud_mask)
 
         elif args.experiment_type is 'case_02':
-            print 'Case 02 ...'
+            print('Case 02 ...')
             mask, sar, opt, _ = load_images(sar_path=self.sar_root_patch + '13_07Jul_2016.npy',
                                             opt_path=self.opt_root_patch + '20160708/'
                                             )
@@ -660,7 +660,7 @@ class pix2pix(object):
             io.savemat(output_folder + self.dataset_name + '_sar' + '.mat', {"sar":sar})
             np.save(output_folder + self.dataset_name + '_opt', opt)
         elif args.experiment_type is 'case_04':
-            print 'Case 04 Multiresolution ...'
+            print('Case 04 Multiresolution ...')
             mask_path = '/mnt/Data/DataBases/RS/SAR/Campo Verde/New_Masks/TrainTestMasks/TrainTestMask_50_50_Dec.tif'
             sar_path = self.sar_root_patch + '13_07Jul_2016.npy'
             opt_path = self.opt_root_patch + '20160708/'
@@ -693,7 +693,7 @@ class pix2pix(object):
 #            opt_target = minmaxnormalization_mask50(opt_target)
             num_rows, num_cols, num_bands = img_source.shape
         elif args.experiment_type is 'case_05':
-            print 'do something'
+            print('do something')
 
 #        print self.input_c_dim,  self.output_size
         img_source = img_source.reshape(1, num_rows, num_cols, num_bands)
@@ -707,12 +707,12 @@ class pix2pix(object):
             for col in range(0, num_cols, stride):
                 if (row+self.image_size <= num_rows) and (col+self.image_size <= num_cols):
 
-                    print row + s, row + self.image_size - s
+                    print(row + s, row + self.image_size - s)
                     sample_image = img_source[:, row:row+self.image_size, col:col+self.image_size]
                     sample = self.sess.run(self.fake_B_sample,
                                            feed_dict={self.real_A: sample_image}
                                            )
-                    print sample.shape
+                    print(sample.shape)
                     fake_opt[int((row+s)/3):int((row+self.image_size-s)/3), int((col+s)/3):int((col+self.image_size-s)/3)] = sample[0, int(s/3):self.image_size_o-int(s/3), int(s/3):self.image_size_o-int(s/3)]
                 elif col+self.image_size <= num_cols:
                     sample_image = img_source[:, num_rows-self.image_size:num_rows, col:col+self.image_size]
@@ -720,10 +720,10 @@ class pix2pix(object):
                     sample = self.sess.run(self.fake_B_sample,
                                            feed_dict={self.real_A: sample_image}
                                            )
-                    print sample.shape
+                    print(sample.shape)
                     fake_opt[int((row+s)/3):int(round(num_rows/3)), int((col+s)/3):int((col+self.image_size-s)/3)] = sample[0, int((self.image_size-num_rows+row+s)/3):int(self.image_size/3), int(s/3):int((self.image_size-s)/3)]
                 elif row+self.image_size <= num_rows:
-                    print col
+                    print(col)
                     sample_image = img_source[:, row:row+self.image_size, num_cols-self.image_size:num_cols]
                     sample = self.sess.run(self.fake_B_sample,
                                            feed_dict={self.real_A: sample_image}
@@ -796,64 +796,64 @@ class pix2pix(object):
 
     def create_dataset(self, args):
         if '11nov2015' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '02_10Nov_2015.npy'
             opt_img_name = '20151111/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif '13dec2015' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '05_16Dec_2015.npy'
             opt_img_name = '20151213/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif '18mar2016' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '09_21Mar_2016.npy'
             opt_img_name = '20160318/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif '05may2016' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '10_08May_2016.npy'
             opt_img_name = '20160505/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif '08jul2016' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '13_07Jul_2016.npy'
             opt_img_name = '20160708/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif '24jul2016' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '14_31Jul_2016.npy'
             opt_img_name = '20160724/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif 'May05_Jul08' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name2 = '10_08May_2016.npy'
             opt_img_name2 = '20160505/'
             sar_img_name1 = '13_07Jul_2016.npy'
             opt_img_name1 = '20160708/'
         elif '13jul2017_C03' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '/mnt/Data/DataBases/CampoVerde2017/Sentinel1/20170714.npy'
             opt_img_name = '/mnt/Data/DataBases/CampoVerde2017/Sentinel2/20170713/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif '08jul2016_multiresolution' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '13_07Jul_2016.npy'
             opt_img_name = '20160708/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif 'May052016_multiresolution' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name = '10_08May_2016.npy'
             opt_img_name = '20160505/'
-            print sar_img_name, opt_img_name
+            print(sar_img_name, opt_img_name)
         elif 'May052016May202017_multiresolution' in args.dataset_name:
-            print 'creating dataset for_' + args.dataset_name
+            print('creating dataset for_' + args.dataset_name)
             sar_img_name1 = '10_08May_2016.npy'
             opt_img_name1 = '20160505/'
             sar_img_name2 = '20170520.npy'
             opt_img_name2 = '20170524/'
         else:
-            print "Image pair doesnt exist !!!"
+            print("Image pair doesnt exist !!!")
             return 0
 #        create_dataset_case1(ksize=256,
 #                             dataset=self.dataset_name,
