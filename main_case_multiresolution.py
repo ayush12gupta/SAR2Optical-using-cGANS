@@ -4,7 +4,7 @@ import scipy.misc
 import numpy as np
 
 #from model_multiresolution import pix2pix
-from model_multiresolution_case_b import pix2pix
+from model_multiresolution import pix2pix
 import tensorflow as tf
 parser = argparse.ArgumentParser(description='')
 #parser.add_argument('--dataset_name', dest='dataset_name', default='11nov2015_C01', help='name of the dataset')
